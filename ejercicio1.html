@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Proceso de Compra</title>
+</head>
+
+<body>
+    <input type="text" id="nombreUsuario" placeholder="Ingresa un nombre de usuario"></input>
+    <button onclick="verificarDisponibilidadUsuario()">Verificar</button>
+
+    <script>
+        // Verificación de disponibilidad de usuario:
+
+        // Escribe un programa donde se ingrese un nombre de usuario y definir una función llamada 
+        // verificarDisponibilidadUsuario que usa ese parámetro como argumento y devuelva una promesa.
+        // Esta promesa debe resolver si el nombre de usuario está disponible y guardar el nuevo 
+        // usuario o rechazar si el nombre de usuario ya está en uso.
+        
+        let usuarios = ['marcelo', 'carlos', 'tomas', 'mauricio', 'sofia', 'gaston']; 
+
+        function verificarDisponibilidadUsuario() {
+            // Variable para ingresar usuario, llamando al input para ingresar datos.
+            const usuario = document.getElementById('nombreUsuario').value.toLowerCase();
+
+            // Correr distintas funciones dependiendo del exito o error de la función.
+            const promesa = new Promise((resolve, reject) => {
+                // Tiempo de espera para correr la función.
+                setTimeout(() => {
+                    if (usuarios.includes(usuario)) {
+                        // Si el usuario ingresado ya está en la lista.
+                        reject(`El usuario ${usuario} ya se encuentra en la lista.`);
+                    } else {
+                        // Si el usuario ingresado no se encuentra en la lista.
+                        usuarios.push(usuario)
+                        resolve(`El usuario ${usuario} fue guardado con éxito en la lista.`);                        }
+                }, 2000);
+            });
+
+            // Correr el método promesa.
+            promesa
+                .then((resultado) => {
+                    alert(resultado); // Si todo funcionó correctamente.
+                })
+                .catch((error) => {
+                    alert(error); // Si se produjo un error.
+                });
+        }
+
+    </script>
+
+</body>
+
+</html>
+
+
